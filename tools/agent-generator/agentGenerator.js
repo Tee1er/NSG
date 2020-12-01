@@ -39,19 +39,15 @@ for (let i = 0; i < 1024; i++) {
       )
     ) {
       case "child":
-        console.log("C");
         agent.age = chance.age({ type: "child" });
         console.log("C", agent.age)
       case "teenager":
-        console.log("T");
         agent.age = chance.age({ type: "teen" });
         console.log("T", agent.age);
       case "adult":
-        console.log("A");
         agent.age = chance.age({ type: "adult" });
         console.log("A", agent.age)
       case "senior":
-        console.log("S");
         agent.age = chance.age({ type: "senior" });
         console.log("S", agent.age)
     }
