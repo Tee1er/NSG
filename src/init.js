@@ -80,7 +80,7 @@ let scenario = {
 
 let gameState = {}; //gameState object contains, stuff, I guess about the game state. get it?
 
-if (ls.getItem("gameState") !== null) {
+if (ls.getItem("gameState")) {
   gameState = ls.getItem("gameState");
 } else {
   //This is the default

@@ -1,5 +1,10 @@
-# AGENT-GENERATOR.JS
+# tools / agent-generator
 
-### a simple Node script utilizing chance.js for generating the agents.json file required to create scenarios
+A simple Node script designed to generate profiles (Scenarios) for NSG
 
-Will not be included in production.
+Tweak variables in the script according to your desired profile, then save & run the script.
+
+```javascript
+> node agentGen.js
+```
+You should find that agents.json is now populated with an array of objects describing agents. In the default configuration, there are 4096 agents generated.

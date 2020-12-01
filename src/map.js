@@ -1,5 +1,4 @@
 /**MAP.JS --- Leaflet maps for the landscape */
-
 /**ALWAYS REMEMBER - leaflet takes coords (in CRS.Simple) with Y, X ! */
 
 let map = L.map("mapView", {
