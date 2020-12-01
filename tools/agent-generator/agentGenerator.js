@@ -1,5 +1,9 @@
+/**> node agentGenerator.js */
+
 let fs = require("fs");
-let chance = require("chance");
+let Chance = require("chance");
+
+let chance = new Chance();
 
 function writeFile(filePath, content) {
   fs.writeFileSync(filePath, content, { flag: "a+" }, (err) => {
@@ -20,6 +24,8 @@ let agents = [];
 for (let i = 0; i < 1024; i++) {
   let agent = {};
 
+  agent.id = chance.guid();
+
   if (chance.weighted([0, 1], [95, 5]) == 0) {
     // If weighted # = 0 generate an individual-type agent.
 
@@ -33,33 +39,44 @@ for (let i = 0; i < 1024; i++) {
       )
     ) {
       case "child":
+        console.log("C");
         agent.age = chance.age({ type: "child" });
+        console.log("C", agent.age)
       case "teenager":
+        console.log("T");
         agent.age = chance.age({ type: "teen" });
+        console.log("T", agent.age);
       case "adult":
+        console.log("A");
         agent.age = chance.age({ type: "adult" });
+        console.log("A", agent.age)
       case "senior":
+        console.log("S");
         agent.age = chance.age({ type: "senior" });
+        console.log("S", agent.age)
     }
 
     /**Generate financial assets - basically usable currency, I believe - not an econ. person tho */
 
-    if (agent <= 24) {
+    if (agent.age <= 24) {
+      console.log("a");
       agent.financialAssets = chance.normal({ mean: 2000, dev: 20000 });
-    } else if (agent <= 34) {
+    } else if (agent.age <= 34) {
       agent.financialAssets = chance.normal({ mean: 15000, dev: 15000 });
-    } else if (agent <= 44) {
+    } else if (agent.age <= 44) {
       agent.financialAssets = chance.normal({ mean: 20000, dev: 15000 });
-    } else if (agent <= 54) {
+    } else if (agent.age <= 54) {
       agent.financialAssets = chance.normal({ mean: 35000, dev: 10000 });
-    } else if (agent <= 64) {
+    } else if (agent.age <= 64) {
       agent.financialAssets = chance.normal({ mean: 55000, dev: 15000 });
-    } else if (agent <= 74) {
+    } else if (agent.age <= 74) {
       agent.financialAssets = chance.normal({ mean: 65000, dev: 30000 });
-    } else if (agent >= 75) {
+    } else if (agent.age >= 75) {
       agent.financialAssets = chance.normal({ mean: 30000, dev: 35000 });
     }
 
     agents.push(agent);
   }
 }
+
+writeFile("agents.json", JSON.stringify(agents));
