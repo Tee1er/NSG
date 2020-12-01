@@ -40,38 +40,45 @@ for (let i = 0; i < 1024; i++) {
     ) {
       case "child":
         agent.age = chance.age({ type: "child" });
-        console.log("C", agent.age)
+        break;
       case "teenager":
         agent.age = chance.age({ type: "teen" });
-        console.log("T", agent.age);
+        break;
       case "adult":
         agent.age = chance.age({ type: "adult" });
-        console.log("A", agent.age)
+        break;
       case "senior":
         agent.age = chance.age({ type: "senior" });
-        console.log("S", agent.age)
+        break;
     }
 
     /**Generate financial assets - basically usable currency, I believe - not an econ. person tho */
 
     if (agent.age <= 24) {
-      console.log("a");
+      console.log("24");
       agent.financialAssets = chance.normal({ mean: 2000, dev: 20000 });
     } else if (agent.age <= 34) {
+        console.log(34)
       agent.financialAssets = chance.normal({ mean: 15000, dev: 15000 });
     } else if (agent.age <= 44) {
+        console.log(44)
       agent.financialAssets = chance.normal({ mean: 20000, dev: 15000 });
     } else if (agent.age <= 54) {
+        console.log(54)
       agent.financialAssets = chance.normal({ mean: 35000, dev: 10000 });
     } else if (agent.age <= 64) {
+        console.log(64)
       agent.financialAssets = chance.normal({ mean: 55000, dev: 15000 });
     } else if (agent.age <= 74) {
+        console.log(74)
       agent.financialAssets = chance.normal({ mean: 65000, dev: 30000 });
     } else if (agent.age >= 75) {
+        console.log(75)
       agent.financialAssets = chance.normal({ mean: 30000, dev: 35000 });
     }
 
     agents.push(agent);
+    console.log(agent);
   }
 }
 
