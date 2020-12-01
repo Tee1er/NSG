@@ -2,32 +2,32 @@
 
 /**ALWAYS REMEMBER - leaflet takes coords (in CRS.Simple) with Y, X ! */
 
-let map = L.map('mapView', {
-    crs: L.CRS.Simple, //simple coordinate system provided by leaflet
-    minZoom: -1.75,
-    maxZoom: 0.75, //Avoid pixelated map
-    maxBoundsViscosity: 1.0
+let map = L.map("mapView", {
+  crs: L.CRS.Simple, //simple coordinate system provided by leaflet
+  minZoom: -1.75,
+  maxZoom: 0.75, //Avoid pixelated map
 }).setView([0, 0], 0);
 
-let image = L.imageOverlay("assets/maps/fr-map2.jpeg", [[3500, 3500], [1543, 1543]]).addTo(map);
-map.fitBounds([[3500, 3500], [1543, 1543]])
+let image = L.imageOverlay("assets/maps/fr-map2.jpeg", [
+  [3500, 3500],
+  [1543, 1543],
+]).addTo(map); //adds img to map
 
-/**Creates labels for each city - still a bit unfamiliar with Leaflet coords, unfortunately */
+map.fitBounds([
+  [3500, 3500],
+  [1543, 1543],
+]); //fits the map to bounds
+
+map.setMaxBounds([
+  [3500, 3500],
+  [1543, 1543],
+]); //these bounds work, but they don't make sense - FIXME
+
+/**Creates labels for each city */
 for (city of scenario.cities) {
-    var myIcon = L.divIcon({className: 'city-label', html: city.name});
+  var myIcon = L.divIcon({ className: "city-label", html: city.name });
 
-    console.log(city)
-    //styles can be set in CSS
-    L.marker(city.coordinates, {icon: myIcon}).addTo(map);
+  //styles can be set in CSS
 
-    //create markers
-    let cityMarker = L.icon({
-        iconUrl: 'assets/maps/map-pin.png',
-        iconSize: [24, 24],
-        iconAnchor: city.coordinates,
-        popupAnchor: city.coordinates
-    })
-
-    L.marker(city.coordinates, {icon: cityMarker}).addTo(map)
-
+  L.marker(city.coordinates, { icon: myIcon }).addTo(map);
 }

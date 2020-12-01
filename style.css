@@ -1,262 +1,282 @@
 /* Fonts */
 
 @font-face {
-    font-family: 'Piazzolla';
-    src: url('assets/typography/Piazzolla/Piazzolla-ThinItalic.woff2') format('woff2'),
-        url('Piazzolla-ThinItalic.woff') format('woff');
-    font-weight: 100;
-    font-style: italic;
-    font-display: swap;
+  font-family: "Piazzolla";
+  src: url("assets/typography/Piazzolla/Piazzolla-ThinItalic.woff2")
+      format("woff2"),
+    url("Piazzolla-ThinItalic.woff") format("woff");
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Piazzolla';
-    src: url('Piazzolla-SemiBold.woff2') format('woff2'),
-        url('Piazzolla-SemiBold.woff') format('woff');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
+  font-family: "Piazzolla";
+  src: url("Piazzolla-SemiBold.woff2") format("woff2"),
+    url("Piazzolla-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Piazzolla';
-    src: url('Piazzolla-SemiBold.woff2') format('woff2'),
-        url('Piazzolla-SemiBold.woff') format('woff');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
+  font-family: "Piazzolla";
+  src: url("Piazzolla-SemiBold.woff2") format("woff2"),
+    url("Piazzolla-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Piazzolla';
-    src: url('assets/typography/Piazzolla/Piazzolla-ThinItalic.woff2') format('woff2'),
-        url('assets/typography/Piazzolla/Piazzolla-ThinItalic.woff') format('woff');
-    font-weight: 100;
-    font-style: italic;
-    font-display: swap;
+  font-family: "Piazzolla";
+  src: url("assets/typography/Piazzolla/Piazzolla-ThinItalic.woff2")
+      format("woff2"),
+    url("assets/typography/Piazzolla/Piazzolla-ThinItalic.woff") format("woff");
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Piazzolla';
-    src: url('assets/typography/Piazzolla/Piazzolla-SemiBold.woff2') format('woff2'),
-        url('assets/typography/Piazzolla/Piazzolla-SemiBold.woff') format('woff');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
+  font-family: "Piazzolla";
+  src: url("assets/typography/Piazzolla/Piazzolla-SemiBold.woff2")
+      format("woff2"),
+    url("assets/typography/Piazzolla/Piazzolla-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Source Sans Pro';
-    src: url('assets/typography/Source Sans Pro/SourceSansPro-Italic.woff2') format('woff2'),
-        url('assets/typography/Source Sans Pro/SourceSansPro-Italic.woff') format('woff');
-    font-weight: normal;
-    font-style: italic;
-    font-display: swap;
+  font-family: "Source Sans Pro";
+  src: url("assets/typography/Source Sans Pro/SourceSansPro-Italic.woff2")
+      format("woff2"),
+    url("assets/typography/Source Sans Pro/SourceSansPro-Italic.woff")
+      format("woff");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Source Sans Pro';
-    src: url('assets/typography/Source Sans Pro/SourceSansPro-Regular.woff2') format('woff2'),
-        url('assets/typography/Source Sans Pro/SourceSansPro-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: "Source Sans Pro";
+  src: url("assets/typography/Source Sans Pro/SourceSansPro-Regular.woff2")
+      format("woff2"),
+    url("assets/typography/Source Sans Pro/SourceSansPro-Regular.woff")
+      format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Source Sans Pro';
-    src: url('assets/typography/Source Sans Pro/SourceSansPro-Bold.woff2') format('woff2'),
-        url('assets/typography/Source Sans Pro/SourceSansPro-Bold.woff') format('woff');
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
+  font-family: "Source Sans Pro";
+  src: url("assets/typography/Source Sans Pro/SourceSansPro-Bold.woff2")
+      format("woff2"),
+    url("assets/typography/Source Sans Pro/SourceSansPro-Bold.woff")
+      format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Source Sans Pro';
-    src: url('assets/typography/Source Sans Pro/SourceSansPro-SemiBold.woff2') format('woff2'),
-        url('assets/typography/Source Sans Pro/SourceSansPro-SemiBold.woff') format('woff');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
+  font-family: "Source Sans Pro";
+  src: url("assets/typography/Source Sans Pro/SourceSansPro-SemiBold.woff2")
+      format("woff2"),
+    url("assets/typography/Source Sans Pro/SourceSansPro-SemiBold.woff")
+      format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
 }
-
-
-
-
 
 /* STYLE BACKGROUND */
 body {
-    background-color: #FCFCFC;
+  background-color: #fcfcfc;
 }
 
 p {
-    font-family: "Source Sans Pro";
+  font-family: "Source Sans Pro";
 }
 
-#centerContainer { 
-    width: 65%; 
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    /* float: center; */
-    margin-left: auto;
-    margin-right: auto;
+#centerContainer {
+  width: 65%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* float: center; */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* CREATE COLUMNS */
 .leftColumn {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .rightColumn {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 45%;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 45%;
 }
 
 /**STYLE PANELS**/
 .panelTitle {
-    font-family: "Piazzolla";
-    color: #404040;
-    font-size: 16px;
-    font-weight: 600;
-    margin: 1.75% auto
+  font-family: "Piazzolla";
+  color: #404040;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 1.75% auto;
 }
 
 .panelContentDivider {
-    background-color: #E5E5E5;
-    color: #E5E5E5;
-    height: 1px;
-    border: none;
+  background-color: #e5e5e5;
+  color: #e5e5e5;
+  height: 1px;
+  border: none;
 }
 
 /* STYLE NEWSFEED */
 
-#article1, #article2, #article3 {
-    border: 1px solid #E5E5E5;
-    margin: 3% auto;
-    border-radius: 15px;
+#article1,
+#article2,
+#article3 {
+  border: 1px solid #e5e5e5;
+  margin: 3% auto;
+  border-radius: 15px;
 }
 
-#a1title, #a2title, #a3title {
-    color: #404040;
-    font-family: "Piazzolla", serif;
-    margin: 2% 6%;
-    margin-bottom: 0.5%;
-    font-size: 15px;
+#a1title,
+#a2title,
+#a3title {
+  color: #404040;
+  font-family: "Piazzolla", serif;
+  margin: 2% 6%;
+  margin-bottom: 0.5%;
+  font-size: 15px;
 }
 
 .articleText {
-    color: #595959;
-    font-family: "Source Sans Pro", sans-serif;
-    margin-left: 6%;
-    margin-right: 6%;
-    margin-top: 0;
-    margin-bottom: 4%;
-    font-size: 14px;
-    display: block;
+  color: #595959;
+  font-family: "Source Sans Pro", sans-serif;
+  margin-left: 6%;
+  margin-right: 6%;
+  margin-top: 0;
+  margin-bottom: 4%;
+  font-size: 14px;
+  display: block;
 }
 
-#a1pub, #a2pub, #a3pub {
-    text-align: center;
-    border-radius: 15px 15px 0 0;
-    background-color: #008000;
-    color: #FFFFFF;
-    padding: 2%;
+#a1pub,
+#a2pub,
+#a3pub {
+  text-align: center;
+  border-radius: 15px 15px 0 0;
+  background-color: #008000;
+  color: #ffffff;
+  padding: 2%;
 }
-
 
 /* STYLE LEGISLATURE PANEL */
 #legislatureValidityDisp {
-    background-color: #008000;
-    border-radius: 15px;
+  background-color: #008000;
+  border-radius: 15px;
 }
 
 #legislatureValidity {
-    color: #FFFFFF;
-    font-family: "Piazzolla", serif;
-    font-size: 18px;
-    padding: 1% 2%;
+  color: #ffffff;
+  font-family: "Piazzolla", serif;
+  font-size: 18px;
+  padding: 1% 2%;
 }
 
-#lcWho, #lcWhat, #lcWhen {
-    font-family: "Piazzolla";
-    font-size: 18px;
-    line-height: 10px;
+#lcWho,
+#lcWhat,
+#lcWhen {
+  font-family: "Piazzolla";
+  font-size: 18px;
+  line-height: 10px;
 }
 
 .lcWPrompt {
-    color: #D2D2D2;
+  color: #d2d2d2;
 }
 
 #enactLegislatureBtn {
-    border-radius: 15px;
-    padding: 2% 12%;
-    color: #595959;
-    font-size: 18px;
-    margin: 0 auto;
-    display: block;
-    margin-top: 2%;
-    font-family: "Piazzolla";
-    background-color: #FFFFFF;
-    border: 1px solid #D2D2D2;
+  border-radius: 15px;
+  padding: 2% 12%;
+  color: #595959;
+  font-size: 18px;
+  margin: 0 auto;
+  display: block;
+  margin-top: 2%;
+  font-family: "Piazzolla";
+  background-color: #ffffff;
+  border: 1px solid #d2d2d2;
 }
 
 #enactLegislatureBtn:hover {
-    background-color: #6C6C6C;
-    color: white;
+  background-color: #6c6c6c;
+  color: white;
 }
 
 /* NSG INFO PANEL STYLING */
-#nsgInfoHeader, .nsgInfoSubheader {
-    text-align: center;
-    color: #595959;
-    font-family: "Piazzolla"
+#nsgInfoHeader,
+.nsgInfoSubheader {
+  text-align: center;
+  color: #595959;
+  font-family: "Piazzolla";
 }
 
-
-
 /* STYLE RIGHT SIDE PANELS */
-#approvalView, #gdpView, #userSelectView, #mapView, #additionalData, #nsgInfo {
-    background-color: white;
-    position: relative;
-    padding: 1.5%;
-    border: 1px solid #D2D2D2;
-    border-radius: 15px;
-    margin: 1.4% 1.2%;
+#approvalView,
+#gdpView,
+#userSelectView,
+#mapView,
+#additionalData,
+#nsgInfo {
+  background-color: white;
+  position: relative;
+  padding: 1.5%;
+  border: 1px solid #d2d2d2;
+  border-radius: 15px;
+  margin: 1.4% 1.2%;
 }
 
 /* STYLE LEFT SIDE PANELS */
-#datePanel, #legislaturePanel, #statusPanel, #newsFeed {
-    background-color: white;
-    position: relative;
-    /**This is actually the only part that's different, but oh well :(*/
-    padding: 1.5%;
-    border: 1px solid #D2D2D2;
-    border-radius: 15px;
-    margin: 1.4% 1.2%;
+#datePanel,
+#legislaturePanel,
+#statusPanel,
+#newsFeed {
+  background-color: white;
+  position: relative;
+  /**This is actually the only part that's different, but oh well :(*/
+  padding: 1.5%;
+  border: 1px solid #d2d2d2;
+  border-radius: 15px;
+  margin: 1.4% 1.2%;
 }
 
 #rightColumn {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 #map {
-    width: inherit;
-    height: 520px;
-    overflow: hidden;
+  width: inherit;
+  height: 520px;
+  overflow: hidden;
 }
 
 #mapView {
-    width: 94.5%;
+  width: 94.5%;
 }
 
 .city-label {
-    font-family: "Source Sans Pro", sans-serif;
-    color: #595959;
-    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
-    font-size: 12px;
+  font-family: "Source Sans Pro", sans-serif;
+  color: #595959;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
