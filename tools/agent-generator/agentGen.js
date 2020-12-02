@@ -1,4 +1,4 @@
-/**> node agentGenerator.js */
+/**agentGen.js (c) 2020 Tyler Song */
 
 let fs = require("fs");
 let Chance = require("chance");
@@ -65,26 +65,19 @@ for (let i = 0; i < 1024; i++) {
     /**Generate financial assets - basically usable currency, I believe - not an econ. person tho */
 
     if (agent.age <= 18) {
-      agent.currency = 0;
     } else if (agent.age <= 24) {
       agent.currency = chance.normal({ mean: 2000, dev: 20000 });
     } else if (agent.age <= 34) {
-      console.log(34);
       agent.currency = chance.normal({ mean: 15000, dev: 15000 });
     } else if (agent.age <= 44) {
-      console.log(44);
       agent.currency = chance.normal({ mean: 20000, dev: 15000 });
     } else if (agent.age <= 54) {
-      console.log(54);
       agent.currency = chance.normal({ mean: 35000, dev: 10000 });
     } else if (agent.age <= 64) {
-      console.log(64);
       agent.currency = chance.normal({ mean: 55000, dev: 15000 });
     } else if (agent.age <= 74) {
-      console.log(74);
       agent.currency = chance.normal({ mean: 65000, dev: 30000 });
     } else if (agent.age >= 75) {
-      console.log(75);
       agent.currency = chance.normal({ mean: 30000, dev: 35000 });
     }
 
@@ -144,8 +137,14 @@ for (let i = 0; i < 1024; i++) {
     //Iterate through bidsTemplate & give each agent slightly different price beliefs.
 
     for (bid of bidsTemplate) {
-      bid.priceBelief[0] = bid.priceBelief[0] *= chance.normal();
-      bid.priceBelief[1] = bid.priceBelief[1] *= chance.normal();
+      bid.priceBelief[0] = bid.priceBelief[0] *= chance.normal({
+        mean: 1,
+        dev: 0.99,
+      });
+      bid.priceBelief[1] = bid.priceBelief[1] *= chance.normal({
+        mean: 1,
+        dev: 0.99,
+      });
       bid.priceBelief.sort();
     }
 
