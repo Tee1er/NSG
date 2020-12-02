@@ -2,8 +2,18 @@
 
 let fs = require("fs");
 let Chance = require("chance");
+let ProgressBar = require("progress");
 
 let chance = new Chance();
+
+/**Generate a spiffy progress bar for, tbh, no reason whatsoever 
+ * (BUT IT LOOKS KEWL)
+ */
+
+let bar = new ProgressBar( 
+  "Generating JSON file ... [:bar] :elapsed sec. elapsed",
+  { total: 4096, width: 32 }
+);
 
 function writeFile(filePath, content) {
   fs.writeFileSync(filePath, content, { flag: "a+" }, (err) => {
@@ -12,7 +22,7 @@ function writeFile(filePath, content) {
   return content;
 }
 
-console.log("NSG Agent Generator v0.1 - For NSG v0.1 (c) 2020 Tyler Song");
+console.log("NSG Agent Generator v0.1 - For NSG v0.1 (c) 2020 Tyler Song \n");
 
 let agents = [];
 
@@ -26,13 +36,15 @@ let agents = [];
 
 /**Data from StatsNZ */
 
-for (let i = 0; i < 1024; i++) {
+for (let i = 0; i < 2048; i++) {
   let agent = {};
 
   agent.id = chance.guid();
 
   if (chance.weighted([0, 1], [95, 5]) == 0) {
-    // If weighted # = 0 generate an individual-type agent.
+    /**  If weighted # = 0 generate an individual-type agent. */
+
+    agent.type = 0;
 
     //Some ages are more likely than others as a population changes - remember that these default scenarios will CHANGE over time
 
@@ -92,46 +104,57 @@ for (let i = 0; i < 1024; i++) {
       {
         good: "fruit",
         priceBelief: [0.08, 0.28],
+        max: { value: 3, nonMutable: false }, // I suppose arrays are better in terms of performance, this could be [3, false]
       },
       {
         good: "vegetables",
         priceBelief: [0.06, 0.18],
+        max: { value: 3, nonMutable: false }, //nonMutable means that
       },
       {
         good: "milk",
         priceBelief: [0.2, 0.6],
+        max: { value: 3, nonMutable: false },
       },
       {
         good: "meat",
         priceBelief: [0.5, 2.5],
+        max: { value: 2, nonMutable: false },
       },
       {
         good: "grains",
         priceBelief: [0.06, 0.18],
+        max: { value: 5, nonMutable: false },
       },
       {
         good: "housing",
         priceBelief: [50, 250], //more important goods have wider price belief intervals
+        max: { value: 1, nonMutable: true }, //you can really only buy one home - does that make sense?
       },
       {
         good: "clothing",
         priceBelief: [10, 30],
+        max: { value: 3, nonMutable: false },
       },
       {
         good: "utilities",
         priceBelief: [80, 160],
+        max: { value: 1, nonMutable: false },
       },
       {
         good: "transport",
         priceBelief: [5, 9],
+        max: { value: 1, nonMutable: false },
       },
       {
         good: "education",
         priceBelief: [3, 11],
+        max: { value: 1, nonMutable: false },
       },
       {
         good: "entertainment",
         priceBelief: [15, 25],
+        max: { value: 3, nonMutable: false },
       },
     ];
     //Iterate through bidsTemplate & give each agent slightly different price beliefs.
@@ -146,6 +169,10 @@ for (let i = 0; i < 1024; i++) {
         dev: 0.99,
       });
       bid.priceBelief.sort();
+
+      bid.max.value = bid.max.value *= Math.floor(
+        chance.natural({ min: 1, max: 3 })
+      );
     }
 
     agent.bids = bidsTemplate;
@@ -153,11 +180,41 @@ for (let i = 0; i < 1024; i++) {
     /**Generate each agent's profession if of correct age, which in turn determines their asks (what they sell) */
 
     if (agent.age >= 18) {
-      agent.asks = [chance.profession()];
+      agent.asks = [
+        {
+          good: chance.profession(),
+        },
+      ];
     }
 
     agents.push(agent);
+  } else {
+    /**Else, generate a corporate-type agent. */
+    //TODO - add nonprofit agents?
+    agent.type = 1;
+
+    agent.id = chance.guid();
+
+    agent.name = chance.company();
+
+    agent.bids = [
+      {
+        good: chance.profession(),
+      },
+      {
+        good: chance.profession(),
+      },
+      {
+        good: chance.profession(),
+      },
+    ];
   }
+
+  /**Tick, tock, goes the progress bar clock */
+
+  bar.tick()
 }
 
 writeFile("agents.json", JSON.stringify(agents));
+
+console.log("\n") //the \n doesn't have to be there, but I find it makes it easier to understand
