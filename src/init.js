@@ -1,30 +1,8 @@
 /**INIT.JS --- Initializes the game, etc */
 
-const { Chance } = require("chance");
-const { PassThrough } = require("stream");
-
-/**Loads activityLog from local storage, and records that in the log. */
-
-logs.load(); //loads logs from local storage
-
-logs.record("LOG LOADED FROM LOCAL STORAGE"); //record that
-
-/**A couple useful functions */
-
-function readFile(filePath) {
-    let xmlhttp = new XMLHttpRequest();
-
-    xmlhttp.open("GET", filePath, false);
-    xmlhttp.send();
-    if (xmlhttp.status == 200) {
-        let result = xmlhttp.responseText;
-        logs.record("LOADED FILE FROM" + filePath);
-        return result;
-    }
-}
-
 /**Set up information for the scenario */
-let scenario = { //Eventually, all of the scenarios will have to go in separate JSON files
+let profile = {
+    //Eventually, all of the scenarios will have to go in separate JSON files
     cities: [
         {
             name: "Appleopolis",
@@ -79,49 +57,79 @@ let scenario = { //Eventually, all of the scenarios will have to go in separate 
     ],
 };
 
-/**gameState --- stores the current state of the game*/
+/**A couple useful functions */
 
-let gameState = {}; //gameState object contains, stuff, I guess about the game state. get it?
+let Game = {
+    Util: {
+        readFile: function (filePath) {
+            let xmlhttp = new XMLHttpRequest();
+
+            xmlhttp.open("GET", filePath, false);
+            xmlhttp.send();
+            if (xmlhttp.status == 200) {
+                let result = xmlhttp.responseText;
+                logs.record("LOADED FILE FROM" + filePath);
+                return result;
+            }
+        },
+    },
+    /**Integrated logs.js into the Game object. */
+    Logs: {
+        activityLog: [],
+        error: function (entry) {
+            this.activityLog.push({
+                time: new Date(),
+                type: "error",
+                entry: entry,
+            });
+            return this.activityLog;
+        },
+
+        record: function (entry, type) {
+            if (type === undefined) {
+                this.activityLog.push({
+                    time: new Date(),
+                    type: "general",
+                    entry: entry,
+                });
+            } else {
+                this.activityLog.push({
+                    time: new Date(),
+                    type: type,
+                    entry: entry,
+                });
+            }
+            return this.activityLog;
+        },
+        save: function () {
+            ls.setItem("activityLog", activityLog);
+        },
+
+        load: function () {
+            if (ls.getItem("activityLog")) {
+                this.activityLog = ls.getItem("activityLog");
+            }
+        },
+    },
+};
+
+Game.Logs.load();
+
+Game.Logs.record("LOG LOADED FROM LOCAL STORAGE");
+
+/**gameState --- one big ol' object that stores a bunch of details on the game. */
+
+let gameState = {
+    days: 0,
+    economy: {
+        agents: [], //list of agent instances
+        bids: [],
+        asks: [],
+    },
+}; //information about the game state
 
 if (ls.getItem("gameState")) {
+    /**If game state is stored in local storage, make sure to load that up & use it instead
+     * TODO - add a "saves" system */
     gameState = ls.getItem("gameState");
-} else {
-    //This is the default
-    gameState = {
-        days: 0,
-        agents: [], // will contain multiple instances (hundreds to thousands) of the Agent() class defined below
-        //more facts and figures here...
-    };
-}
-
-/**Agents - very important for an agent-based sim. This isn't in economy.js
- * b/c agents (eventually) will do more than just trade amongst themselves.
-*/
-class Agent {
-    constructor(agentObj) { //agentObj
-        this.id = agentObj.id;
-        this.type = agentObj.type;
-        this.age = agentObj.age;
-        this.gender = agentObj.gender;
-        this.currency = agentObj.currency;
-        this.name = agentObj.name;
-
-        this.bids = agentObj.bids;
-        this.asks = agentObj.asks
-    }
-
-    updateState() {
-        if (this.currency <= 0) {
-            logs.record(`BEGINNING DELETION PROCESS FOR AGENT ${this.id}.`)
-            this.deleteAgent()
-        }
-
-        if (Chance.pickone(["a", "b"]) == "b") { //purchase something
-            submitBid(chance.pickone(this.bids))
-        } else {
-            submitBid(chance.pickone(this.asks)) //this is not specific to any agent type
-        }
-    }
-
-    deleteAgent() {};
 }
