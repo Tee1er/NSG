@@ -12,7 +12,7 @@ let chance = new Chance();
 
 let bar = new ProgressBar(
     "Generating JSON file ... [:bar] :elapsed sec. elapsed",
-    { total: 1500, width: 32 }
+    { total: 1500, width: 32 },
 );
 
 function writeFile(filePath, content) {
@@ -50,10 +50,10 @@ for (let i = 0; i < 1500; i++) {
 
         /**Generate ages - based on data from StatsNZ */
         switch (
-        chance.weighted(
-            ["child", "teenager", "adult", "senior"],
-            [21, 19, 40, 20] //EX: "child" has a 21% chance of being generated, while "adult" has a 40% chance.
-        )
+            chance.weighted(
+                ["child", "teenager", "adult", "senior"],
+                [21, 19, 40, 20], //EX: "child" has a 21% chance of being generated, while "adult" has a 40% chance.
+            )
         ) {
             case "child":
                 agent.age = chance.age({ type: "child" });
@@ -160,18 +160,22 @@ for (let i = 0; i < 1500; i++) {
         //Iterate through bidsTemplate & give each agent slightly different price beliefs.
 
         for (bid of bidsTemplate) {
-            bid.priceBelief[0] = bid.priceBelief[0] *= chance.normal({
-                mean: 1,
-                dev: 0.99,
-            });
-            bid.priceBelief[1] = bid.priceBelief[1] *= chance.normal({
-                mean: 1,
-                dev: 0.99,
-            });
+            bid.priceBelief[0] = bid.priceBelief[0] *= Math.abs(
+                chance.normal({
+                    mean: 1,
+                    dev: 0.99,
+                }),
+            );
+            bid.priceBelief[1] = bid.priceBelief[1] *= Math.abs(
+                chance.normal({
+                    mean: 1,
+                    dev: 0.99,
+                }),
+            );
             bid.priceBelief.sort();
 
             bid.max.value = bid.max.value *= Math.floor(
-                chance.natural({ min: 1, max: 3 })
+                chance.natural({ min: 1, max: 3 }),
             );
         }
 
@@ -212,45 +216,48 @@ for (let i = 0; i < 1500; i++) {
         ];
 
         for (bid of bidsTemplate) {
-            bid.priceBelief[0] = bid.priceBelief[0] *= chance.normal({
-                mean: 1,
-                dev: 0.99,
-            });
-            bid.priceBelief[1] = bid.priceBelief[1] *= chance.normal({
-                mean: 1,
-                dev: 0.99,
-            });
+            bid.priceBelief[0] = bid.priceBelief[0] *= Math.abs(
+                chance.normal({
+                    mean: 1,
+                    dev: 0.99,
+                }),
+            );
+            bid.priceBelief[1] = bid.priceBelief[1] *= Math.abs(
+                chance.normal({
+                    mean: 1,
+                    dev: 0.99,
+                }),
+            );
             bid.priceBelief.sort();
         }
 
         agent.currency = chance.normal({ mean: 150000, dev: 75000 });
 
-        agent.asks = chance.pickset([
-            "fruit",
-            "vegetables",
-            "milk",
-            "meat",
-            "grains",
-            "housing",
-            "clothing",
-            "utilities",
-            "transport",
-            "education",
-            "entertainment"
-        ],
-            3
+        agent.asks = chance.pickset(
+            [
+                "fruit",
+                "vegetables",
+                "milk",
+                "meat",
+                "grains",
+                "housing",
+                "clothing",
+                "utilities",
+                "transport",
+                "education",
+                "entertainment",
+            ],
+            3,
         );
 
-
+        agent.bids = bidsTemplate;
     }
 
-
-    agents.push(agent)
+    agents.push(agent);
 
     /**Tick, tock, goes the progress bar clock */
 
-    bar.tick()
-
+    bar.tick();
 }
 
 writeFile("agents.json", JSON.stringify(agents));
