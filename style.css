@@ -276,7 +276,7 @@ p {
 }
 
 .city-label {
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #595959;
   text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
