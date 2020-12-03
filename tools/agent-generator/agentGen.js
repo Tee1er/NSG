@@ -12,7 +12,7 @@ let chance = new Chance();
 
 let bar = new ProgressBar(
     "Generating JSON file ... [:bar] :elapsed sec. elapsed",
-    { total: 2048, width: 32 }
+    { total: 1500, width: 32 }
 );
 
 function writeFile(filePath, content) {
@@ -186,8 +186,6 @@ for (let i = 0; i < 1500; i++) {
                 },
             ];
         }
-
-        agents.push(agent);
     } else {
         /**CORPORATE TYPE AGENTS */
         /**Else, generate a corporate-type agent. */
@@ -243,15 +241,18 @@ for (let i = 0; i < 1500; i++) {
             3
         );
 
-        /**Tick, tock, goes the progress bar clock */
 
-        
     }
+
+
+    agents.push(agent)
+
+    /**Tick, tock, goes the progress bar clock */
 
     bar.tick()
 
 }
 
-    writeFile("agents.json", JSON.stringify(agents));
+writeFile("agents.json", JSON.stringify(agents));
 
-    console.log("\n");
+console.log("\n");
