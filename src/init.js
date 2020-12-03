@@ -8,6 +8,7 @@ let profile = {
             name: "Appleopolis",
             population: 1700000,
             coordinates: [2964, 2486],
+            capital: true,
         },
         {
             name: "Orchard Heights",

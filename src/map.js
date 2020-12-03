@@ -29,4 +29,13 @@ for (city of profile.cities) {
     //styles can be set in CSS
 
     L.marker(city.coordinates, { icon: myIcon }).addTo(map);
+
+    if (city.capital == true) {
+        var starIcon = L.icon({
+            iconUrl: 'assets/misc/star-icon.png',
+            iconSize:     [30, 30],
+            iconAnchor:   [-10, -5], // point of the icon which will correspond to marker's location
+        });
+        L.marker(city.coordinates, { icon: starIcon }).addTo(map);
+    }
 }

@@ -1,1 +1,1 @@
-NTS: Transfonter was used to generate the .woff files
+NTS: Transfonter was used to generate the .woff (woof dog) font files

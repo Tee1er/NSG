@@ -47,4 +47,4 @@ A note, actually: per-person rebellion likelihood cannot be seen, but you can be
 |Low|<2%   |   
 
 
-Someone might change their mind for a lot of reasons, like:
+:point_up: totally overthought stuff by Tee1er
