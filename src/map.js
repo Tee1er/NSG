@@ -3,7 +3,7 @@
 
 let map = L.map("mapView", {
     crs: L.CRS.Simple, //simple coordinate system provided by leaflet
-    minZoom: -1.75,
+    minZoom: -4.00,
     maxZoom: 0.75, //Avoid pixelated map
 }).setView([0, 0], 0);
 
