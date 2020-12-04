@@ -58,6 +58,8 @@ let profile = {
     ],
 };
 
+//let profile = JSON.parse(Game.Util.readFile("../src/agents.json"));
+
 /**A couple useful things */
 
 let ls = window.localStorage;
