@@ -126,7 +126,20 @@ let gameState = {
     days: 0,
     economy: {
         agents: [], //list of agent instances
-        bids: [],
+        bids: {
+            /**It is necessary to add more goods whenever bids are updated */
+            fruit: [],
+            vegetables: [],
+            milk: [],
+            meat: [],
+            grains: [],
+            housing: [],
+            clothing: [],
+            utilities: [],
+            transport: [],
+            education: [],
+            entertainment: [],
+        },
         asks: [],
     },
 }; //information about the game state

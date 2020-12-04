@@ -17,7 +17,7 @@ class Agent {
 
     updateState() {
         if (this.currency <= 0) {
-             this.deleteAgent();
+            this.deleteAgent();
         }
 
         /**Choose whether or not to sell something (ask)
@@ -46,6 +46,39 @@ class Agent {
      * technical paper that NSG's econ. system is based on, for more) */
 
     submitBid(bid) {
-        let offerPrice = chance.floating({min: bid.})
+        bids[bid.good].push({
+            offerAmnt: chance.floating({
+                /**Pick a random # within the price belief. */
+                min: bid.priceBelief[0],
+                max: bid.priceBelief[1],
+            }),
+            good: bid.good,
+            resCallback: this.resolveBid(),
+        });
+    }
+
+    /**This function resolves the bid if the agent submitted the winning offer. */
+
+    resolveBid(bid, res) {
+        //res is short for "Resolve"
+
+        let index = this.bids.findIndex((bidElem) => (bidElem.good = element)); //unnecessary var. for readability purp.
+        if (res) {
+            //^ it should be noted this is the bid that goes into the offer book, NOT the one stored in the this.bids binding
+            //this bid is the obj. pushed to gameState.economy.bids by submitBid()
+            agent.currency -= bid.offerAmnt;
+
+            /**Positive reinforcement - shrink the agent's price belief interval.
+             * -- Get the resolved bid object, then get the agent's bid array.
+             * -- Then shrink the price belief
+             */
+
+            this.bids[index].priceBelief[0] *= 1.1; //these intervals need to be altered and tested eventually for realism & gameplay purposes
+            this.bids[index].priceBelief[1] *= 0.9; //is this the most efficient way? Probably not
+        } else if (!res) {
+            /**Expand the agent's price belief interval */
+            this.bids[index].priceBelief[0] *= 0.9;
+            this.bids[index].pricebelief[1] *= 1.1;
+        }
     }
 }
