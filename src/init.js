@@ -58,7 +58,9 @@ let profile = {
     ],
 };
 
-/**A couple useful functions */
+/**A couple useful things */
+
+let ls = window.localStorage;
 
 let Game = {
     Util: {
@@ -69,7 +71,7 @@ let Game = {
             xmlhttp.send();
             if (xmlhttp.status == 200) {
                 let result = xmlhttp.responseText;
-                logs.record("LOADED FILE FROM" + filePath);
+                Game.Logs.record("LOADED FILE FROM" + filePath);
                 return result;
             }
         },
@@ -129,8 +131,18 @@ let gameState = {
     },
 }; //information about the game state
 
-if (ls.getItem("gameState")) {
-    /**If game state is stored in local storage, make sure to load that up & use it instead
-     * TODO - add a "saves" system */
-    gameState = ls.getItem("gameState");
+// /**If gameState is stored in local storage, just use that instead */
+
+//FIXME - this block was causing, issues, so I commented it out | Tee1er - 12/3/20
+
+// if (ls.getItem("gameState")) {
+//     /**If game state is stored in local storage, make sure to load that up & use it instead
+//      * TODO - add a "saves" system */
+//     gameState = ls.getItem("gameState");
+// }
+
+/**Create all 1.5K agent instances. This *might* be an issue for performance */
+
+for (agent of JSON.parse(Game.Util.readFile("../src/agents.json"))) {
+    gameState.economy.agents.push(new Agent(agent)); //creates new agent instance & adds it to the array.
 }

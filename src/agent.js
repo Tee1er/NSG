@@ -17,18 +17,35 @@ class Agent {
 
     updateState() {
         if (this.currency <= 0) {
-            logs.record(`BEGINNING DELETION PROCESS FOR AGENT ${this.id}.`);
-            this.deleteAgent();
+             this.deleteAgent();
         }
+
+        /**Choose whether or not to sell something (ask)
+         * or buy something (bid)
+         */
 
         if (Chance.pickone(["a", "b"]) == "b") {
             /**Purchase an item randomly picked from the agent's bids. */
-            submitBid(chance.pickone(this.bids));
+            this.submitBid(chance.pickone(this.bids));
         } else {
             /**Sell an item randomly picked from the agent's asks. */
-            submitAsk(chance.pickone(this.asks)); //if there's just 1 offer (indiv. agents), that will always be picked (obviously)
+            this.submitAsk(chance.pickone(this.asks)); //if there's just 1 offer (indiv. agents), that will always be picked (obviously)
         }
     }
 
-    deleteAgent() {}
+    /**Remove agent from gameState.economy.agents (for performance purposes)
+     */
+
+    deleteAgent() {
+        let agentIndex = gameState.economy.agents.indexOf(this);
+
+        gameState.economy.agents.splice(agentIndex, 1);
+    }
+
+    /**Submit a bid into the bid book (see Emergent Economies for Role Playing Games, the
+     * technical paper that NSG's econ. system is based on, for more) */
+
+    submitBid(bid) {
+        let offerPrice = chance.floating({min: bid.})
+    }
 }

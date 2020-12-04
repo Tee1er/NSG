@@ -1,22 +1,20 @@
 /**EVENTLOOP.JS --- Updates game state once per minute (60s IRL = 1 day in NSG) */
 
-    setInterval(function () {
+setInterval(function () {
+    /**Save the activity log to local storage */
+    logs.record("SAVING ACTIVITY LOG TO LOCAL STORAGE");
 
-        /**update game state */
+    logs.save();
 
-            gameState.days++
+    logs.record("ACTIVITY LOG SAVED.");
 
-            //Stuff here ¯\_(ツ)_/¯
-        
-        /**Save gameState to local storage. */
-        ls.setItem("gameState", gameState);
-    }, 60000)
+    /**Record gameState in local storage */
 
-    setInterval (function () {
-        /**Save the activity log to local storage */
-        logs.record("SAVING ACTIVITY LOG TO LOCAL STORAGE");
+    ls.setItem("gameState", gameState);
 
-        logs.save();
+    /**Increment day counter */
 
-        logs.record("ACTIVITY LOG SAVED.");
-    }, 300000)
+    gameState.days++; //is 1 day = 5m IRL too long or too short?
+
+    /**Update economic simulation */
+}, 300000);
