@@ -1,6 +1,7 @@
 /**INIT.JS --- Initializes the game, etc */
 
 /**Set up information for the scenario */
+
 let profile = {
     //Eventually, all of the scenarios will have to go in separate JSON files
     cities: [
