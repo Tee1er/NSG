@@ -34,7 +34,7 @@ for (city of profile.cities) {
         var starIcon = L.icon({
             iconUrl: 'assets/misc/star-icon.png',
             iconSize:     [30, 30],
-            iconAnchor:   [-10, -5], // point of the icon which will correspond to marker's location
+            iconAnchor:   [-10, -8], // point of the icon which will correspond to marker's location
         });
         L.marker(city.coordinates, { icon: starIcon }).addTo(map);
     }
