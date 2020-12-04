@@ -2,6 +2,8 @@
 
 /**Set up information for the scenario */
 
+let chance = new Chance();
+
 let profile = {
     //Eventually, all of the scenarios will have to go in separate JSON files
     cities: [
@@ -83,6 +85,7 @@ let Game = {
     Logs: {
         activityLog: [],
         error: function (entry) {
+            console.log(typeof this.activityLog);
             this.activityLog.push({
                 time: new Date(),
                 type: "error",
@@ -92,27 +95,31 @@ let Game = {
         },
 
         record: function (entry, type) {
-            if (type === undefined) {
-                this.activityLog.push({
-                    time: new Date(),
-                    type: "general",
-                    entry: entry,
-                });
-            } else {
+            if (type) {
+                /**If the type variable is provided, use that as the type */
                 this.activityLog.push({
                     time: new Date(),
                     type: type,
+                    entry: entry,
+                });
+            } else if (!type) {
+                /**If the type isn't provided, then use "general"*/
+                this.activityLog.push({
+                    time: new Date(),
+                    type: "general",
                     entry: entry,
                 });
             }
             return this.activityLog;
         },
         save: function () {
-            ls.setItem("activityLog", activityLog);
+            ls.setItem("activityLog", JSON.stringify(this.activityLog));
         },
 
         load: function () {
-            if (ls.getItem("activityLog")) {
+            if (typeof ls.getItem("activityLog") == "string") {
+                this.activityLog = JSON.parse(ls.getItem("activityLog")); //JSON parser is quicker & more secure than eval()
+            } else if (Array.isArray(ls.getItem("activityLog"))) {
                 this.activityLog = ls.getItem("activityLog");
             }
         },
@@ -131,10 +138,10 @@ let gameState = {
         agents: [], //list of agent instances
         bids: {
             /**It is necessary to add more goods whenever bids are updated */
-            fruit: [],
-            vegetables: [],
-            milk: [],
-            meat: [],
+            fruit: [], // ID = 1
+            vegetables: [], // ID = 2
+            milk: [], // ID = 3
+            meat: [], // and so on...
             grains: [],
             housing: [],
             clothing: [],
