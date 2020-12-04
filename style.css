@@ -269,10 +269,12 @@ p {
   width: inherit;
   height: 520px;
   overflow: hidden;
+  /*background-color: #436693;*/
 }
 
 #mapView {
   width: 94.5%;
+  background-color:	#436693;
 }
 
 .city-label {
