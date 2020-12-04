@@ -3,9 +3,9 @@
 
 let map = L.map("mapView", {
     crs: L.CRS.Simple, //simple coordinate system provided by leaflet
-    minZoom: -4.00,
+    minZoom: -4.0,
     maxZoom: 0.75, //Avoid pixelated map
-}).setView([0, 0], 0);
+}).setView([0, 0], 1);
 
 let image = L.imageOverlay("assets/maps/fr-map2.jpeg", [
     [3500, 3500],
@@ -32,9 +32,9 @@ for (city of profile.cities) {
 
     if (city.capital == true) {
         var starIcon = L.icon({
-            iconUrl: 'assets/misc/star-icon.png',
-            iconSize:     [30, 30],
-            iconAnchor:   [-10, -8], // point of the icon which will correspond to marker's location
+            iconUrl: "assets/misc/star-icon.png",
+            iconSize: [30, 30],
+            iconAnchor: [-10, -8], // point of the icon which will correspond to marker's location
         });
         L.marker(city.coordinates, { icon: starIcon }).addTo(map);
     }
